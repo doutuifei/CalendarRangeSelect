@@ -16,6 +16,9 @@ import java.util.Calendar;
 
 import de.greenrobot.event.EventBus;
 
+import static com.muzi.calendarrangeselect.entity.UpdataCalendar.inTransitDay;
+import static com.muzi.calendarrangeselect.entity.UpdataCalendar.tenancyTerm;
+
 /**
  * Created by 木子 on 2017/08/08.
  */
@@ -23,35 +26,13 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 
     private ArrayList<DayTimeEntity> days;
     private Context context;
-    private int inTransitDay = 2;//在途天数
-    private int tenancyTerm = 0;//固定租期
+
     private Calendar calendarToday;//手机当前日期
     private Calendar calendarLimit;//当前日期+在途时间
     private Calendar calendarCurre;//item日期
     private Calendar calendarStart;//点击开始日期
     private Calendar calendarEnd;//结束日期
 
-
-    /*
-        设置固定租期
-     */
-    public void setTenancyTerm(int day) {
-        if (day < 1) {
-            try {
-                throw new Exception("固定租期不能小于1天");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        tenancyTerm = day - 1;
-    }
-
-    /*
-        设置在途时间
-     */
-    public void setInTransitDay(int day) {
-        inTransitDay = day;
-    }
 
     public DayTimeAdapter(ArrayList<DayTimeEntity> days, Context context) {
         this.days = days;
