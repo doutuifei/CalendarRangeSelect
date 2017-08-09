@@ -1,19 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape>
-            <!--开始日期的背景-->
-            <corners android:bottomLeftRadius="20dp" android:topLeftRadius="20dp"></corners>
-            <solid android:color="@color/calendar_back_first"></solid>
-        </shape>
-    </item>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--开始日期的背景-->
+    <corners
+        android:bottomLeftRadius="20dp"
+        android:topLeftRadius="20dp"></corners>
+    <solid android:color="@color/calendar_back_first"></solid>
 
-    <item>
-        <shape android:shape="oval">
-            <corners android:radius="20dp" />
-            <!--开始日期的背景-->
-            <solid android:color="@color/calendar_back_first"></solid>
-        </shape>
-    </item>
+</shape>
 
-</selector>

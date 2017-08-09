@@ -143,69 +143,60 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         if (UpdataCalendar.startDay.getYear() == dayTimeEntity.getYear() && UpdataCalendar.startDay.getMonth() == dayTimeEntity.getMonth() && UpdataCalendar.startDay.getDay() == dayTimeEntity.getDay()
                 && UpdataCalendar.stopDay.getYear() == dayTimeEntity.getYear() && UpdataCalendar.stopDay.getMonth() == dayTimeEntity.getMonth() && UpdataCalendar.stopDay.getDay() == dayTimeEntity.getDay()) {
             //开始和结束同一天
-            holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
-            setTextState(holder, "一天");
-            holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-            holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+            setStartAndrStopBackGround(holder);
+            setTextState(holder, context.getResources().getString(R.string.text_calendar_one));
+            setTextSelectColor(holder);
         } else if (UpdataCalendar.startDay.getYear() == dayTimeEntity.getYear() && UpdataCalendar.startDay.getMonth() == dayTimeEntity.getMonth() && UpdataCalendar.startDay.getDay() == dayTimeEntity.getDay()) {
             //该item是 开始日期
-            holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_start);
-            setTextState(holder, "起租");
-            holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-            holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+            setStartBackGround(holder);
+            setTextState(holder, context.getResources().getString(R.string.text_calendar_start));
+            setTextSelectColor(holder);
         } else if (UpdataCalendar.stopDay.getYear() == dayTimeEntity.getYear() && UpdataCalendar.stopDay.getMonth() == dayTimeEntity.getMonth() && UpdataCalendar.stopDay.getDay() == dayTimeEntity.getDay()) {
             //该item是 结束日期
-            holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_stop);
-            setTextState(holder, "归还");
-            holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-            holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+            setStopBackGround(holder);
+            setTextState(holder, context.getResources().getString(R.string.text_calendar_stop));
+            setTextSelectColor(holder);
         } else if (dayTimeEntity.getMonthPosition() >= UpdataCalendar.startDay.getMonthPosition() && dayTimeEntity.getMonthPosition() <= UpdataCalendar.stopDay.getMonthPosition()) {
             //处于开始和结束之间的点
             setTextState(holder, null);
             if (dayTimeEntity.getMonthPosition() == UpdataCalendar.startDay.getMonthPosition() && dayTimeEntity.getMonthPosition() == UpdataCalendar.stopDay.getMonthPosition()) {
                 //开始和结束是一个月份
                 if (dayTimeEntity.getDay() > UpdataCalendar.startDay.getDay() && dayTimeEntity.getDay() < UpdataCalendar.stopDay.getDay()) {
-                    holder.select_ly_day.setBackgroundResource(R.color.calendar_back_between);
-                    holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-                    holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+                    setBetweenBackGround(holder);
+                    setTextSelectColor(holder);
                 } else {
-                    holder.select_ly_day.setBackgroundResource(R.color.white);
-                    holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
-                    holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
+                    resetBackGround(holder);
+                    setTextUnSelectColor(holder);
                 }
             } else if (UpdataCalendar.startDay.getMonthPosition() != UpdataCalendar.stopDay.getMonthPosition()) {
                 // 日期和 开始 不是一个月份
                 if (dayTimeEntity.getMonthPosition() == UpdataCalendar.startDay.getMonthPosition() && dayTimeEntity.getDay() > UpdataCalendar.startDay.getDay()) {
                     //和初始相同月  天数往后
-                    holder.select_ly_day.setBackgroundResource(R.color.calendar_back_between);
-                    holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-                    holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+                    setBetweenBackGround(holder);
+                    setTextSelectColor(holder);
                 } else if (dayTimeEntity.getMonthPosition() == UpdataCalendar.stopDay.getMonthPosition() && dayTimeEntity.getDay() < UpdataCalendar.stopDay.getDay()) {
                     //和结束相同月   天数往前
-                    holder.select_ly_day.setBackgroundResource(R.color.calendar_back_between);
-                    holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-                    holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+                    setBetweenBackGround(holder);
+                    setTextSelectColor(holder);
                 } else if (dayTimeEntity.getMonthPosition() != UpdataCalendar.startDay.getMonthPosition() && dayTimeEntity.getMonthPosition() != UpdataCalendar.stopDay.getMonthPosition()) {
                     //和 开始结束都不是同一个月
-                    holder.select_ly_day.setBackgroundResource(R.color.calendar_back_between);
-                    holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
-                    holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+                    setBetweenBackGround(holder);
+                    setTextSelectColor(holder);
                 } else {
-                    holder.select_ly_day.setBackgroundResource(R.color.white);
-                    holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
-                    holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
+                    resetBackGround(holder);
+                    setTextUnSelectColor(holder);
+
                 }
             }
         } else {
-            holder.select_ly_day.setBackgroundResource(R.color.white);
+            resetBackGround(holder);
             setTextState(holder, null);
-            holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
-            holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
+            setTextUnSelectColor(holder);
         }
 
         //今日
         if (calendarCurre.equals(calendarToday)) {
-            setTextState(holder, "今天");
+            setTextState(holder, context.getResources().getString(R.string.text_calendar_today));
         }
 
     }
@@ -226,6 +217,7 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
             }
         }
     }
+
 
     /*
        calculateStopDay优化版
@@ -305,6 +297,57 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 
     }
 
+    /*
+        设置起租选中背景
+     */
+    private void setStartBackGround(DayTimeViewHolder holder) {
+        holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_start);
+    }
+
+    /*
+       设置归还选中背景
+    */
+    private void setStopBackGround(DayTimeViewHolder holder) {
+        holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_stop);
+    }
+
+    /*
+        设置起租、归还之间的背景颜色
+     */
+    private void setBetweenBackGround(DayTimeViewHolder holder) {
+        holder.select_ly_day.setBackgroundResource(R.color.calendar_back_between);
+    }
+
+    /*
+        设置未选中背景颜色
+     */
+    private void resetBackGround(DayTimeViewHolder holder) {
+        holder.select_ly_day.setBackgroundResource(R.color.white);
+    }
+
+    /*
+        设置起租、归还重叠背景颜色
+     */
+    private void setStartAndrStopBackGround(DayTimeViewHolder holder) {
+        holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
+    }
+
+
+    /*
+        设置字体选中颜色
+     */
+    private void setTextSelectColor(DayTimeViewHolder holder) {
+        holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+        holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_select));
+    }
+
+    /*
+      设置字体未选中颜色
+    */
+    private void setTextUnSelectColor(DayTimeViewHolder holder) {
+        holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
+        holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_unselect));
+    }
 
     @Override
     public int getItemCount() {
