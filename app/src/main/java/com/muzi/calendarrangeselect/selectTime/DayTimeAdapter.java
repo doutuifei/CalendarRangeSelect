@@ -19,7 +19,7 @@ import java.util.Calendar;
 import de.greenrobot.event.EventBus;
 
 /**
- *  Created by 木子 on 2017/08/08.
+ * Created by 木子 on 2017/08/08.
  */
 public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
 
@@ -179,12 +179,34 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         calendarEnd.add(Calendar.DAY_OF_MONTH, packageDay - 1);
         for (DayTimeEntity day : MonthTimeAdapter.allDays) {
             if (day.getYear() == (int) calendarEnd.get(Calendar.YEAR) && day.getMonth() == (calendarEnd.get(Calendar.MONTH) + 1) && day.getDay() == (int) calendarEnd.get(Calendar.DAY_OF_MONTH)) {
-                MonthTimeActivity.stopDay.setDay(day.getDay());
-                MonthTimeActivity.stopDay.setMonth(day.getMonth());
-                MonthTimeActivity.stopDay.setYear(day.getYear());
-                MonthTimeActivity.stopDay.setMonthPosition(day.getMonthPosition());
-                MonthTimeActivity.stopDay.setDayPosition(position);
+                setStopDay(day, position);
                 break;
+            }
+        }
+    }
+
+    /*
+       calculateStopDay优化版
+       packageDay-选中区间范围
+       给定选中区间范围和开始时间，计算结束时间范围
+    */
+    private void calculateStopDayUpdate(int position) {
+        calendarStart.set(MonthTimeActivity.startDay.getYear(), MonthTimeActivity.startDay.getMonth() - 1, MonthTimeActivity.startDay.getDay());
+        calendarEnd.set(MonthTimeActivity.startDay.getYear(), MonthTimeActivity.startDay.getMonth() - 1, MonthTimeActivity.startDay.getDay());
+        calendarEnd.add(Calendar.DAY_OF_MONTH, packageDay - 1);
+        if (calendarStart.get(Calendar.MONTH) == calendarEnd.get(Calendar.MONTH)) {
+            //起租时间和归还时间在同一个月
+            // 归还时间=起租时间+租期-1。
+            int endPosition = MonthTimeActivity.startDay.getDayPosition() + packageDay - 1;
+            setStopDay(days.get(endPosition), endPosition);
+        } else {
+            //起租时间和归还时间不在同一个月
+            // 归还时间在（起租时间+租期-1）之后，从这之后开始遍历。
+            for (int i = MonthTimeActivity.startDay.getDayPosition() + packageDay - 1; i < MonthTimeAdapter.allDays.size(); i++) {
+                if (MonthTimeAdapter.allDays.get(i).getYear() == (int) calendarEnd.get(Calendar.YEAR) && MonthTimeAdapter.allDays.get(i).getMonth() == (calendarEnd.get(Calendar.MONTH) + 1) && MonthTimeAdapter.allDays.get(i).getDay() == (int) calendarEnd.get(Calendar.DAY_OF_MONTH)) {
+                    setStopDay(MonthTimeAdapter.allDays.get(i), position);
+                    break;
+                }
             }
         }
     }
