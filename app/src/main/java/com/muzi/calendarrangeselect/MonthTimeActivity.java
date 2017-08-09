@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.muzi.calendarrangeselect.entity.DayTimeEntity;
 import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
@@ -81,7 +82,9 @@ public class MonthTimeActivity extends Activity {
             stopTime.setText("结束" + "\n" + "时间");
         } else {
             stopTime.setText(UpdataCalendar.stopDay.getMonth() + "月" + UpdataCalendar.stopDay.getDay() + "日" + "\n");
+            Toast.makeText(this, UpdataCalendar.estimatedDate() + "天", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     @Override
