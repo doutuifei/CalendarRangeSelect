@@ -8,7 +8,7 @@
         android:id="@+id/plan_time_txt_month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/blue"
+        android:textColor="@color/calendar_back_between"
         android:textSize="16sp"
         android:text="Aug 2017"
         android:layout_marginTop="10dp"

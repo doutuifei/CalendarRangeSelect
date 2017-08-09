@@ -3,25 +3,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/select_ly_day"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="2dp"
-    android:layout_marginTop="2dp"
+    android:layout_height="44dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="3dp"
     android:gravity="center"
-    android:orientation="vertical"
-    android:paddingBottom="3dp"
-    android:paddingTop="3dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/select_txt_day"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="@color/calendar_text_unselect"
         tools:text="1" />
 
     <TextView
         android:id="@+id/select_txt_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/calendar_text_unselect"
         android:textSize="9sp"
         tools:text="1" />
 

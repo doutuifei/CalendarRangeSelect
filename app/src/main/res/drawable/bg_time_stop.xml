@@ -4,5 +4,5 @@
     <corners android:bottomRightRadius="20dp"
         android:topRightRadius="20dp"
         ></corners>
-    <solid android:color="#4ab7e8"></solid>
+    <solid android:color="@color/calendar_back_first"></solid>
 </shape>

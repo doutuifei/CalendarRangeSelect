@@ -3,5 +3,5 @@
     <!--开始日期和结束日期同一天的背景-->
     <corners android:radius="20dp"
         ></corners>
-    <solid android:color="#4ab7e8"></solid>
+    <solid android:color="@color/calendar_back_first"></solid>
 </shape>

@@ -5,4 +5,6 @@ package com.muzi.calendarrangeselect.entity;
  * 用于EventBus发送消息
  */
 public class UpdataCalendar {
+    public static DayTimeEntity startDay;
+    public static DayTimeEntity stopDay;
 }
