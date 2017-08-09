@@ -2,7 +2,6 @@ package com.muzi.calendarrangeselect.selectTime;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,12 +25,34 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
     private ArrayList<DayTimeEntity> days;
     private Context context;
     private int inTransitDay = 2;//在途天数
-    private int packageDay = 7;//选中区间范围
+    private int tenancyTerm = 6;//固定租期
     private Calendar calendarToday;//手机当前日期
     private Calendar calendarLimit;//当前日期+在途时间
     private Calendar calendarCurre;//item日期
     private Calendar calendarStart;//点击开始日期
     private Calendar calendarEnd;//结束日期
+
+
+    /*
+        设置固定租期
+     */
+    public void setTenancyTerm(int day) {
+        if (day < 1) {
+            try {
+                throw new Exception("固定租期不能小于1天");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        tenancyTerm = day - 1;
+    }
+
+    /*
+        设置在途时间
+     */
+    public void setInTransitDay(int day) {
+        inTransitDay = day;
+    }
 
     public DayTimeAdapter(ArrayList<DayTimeEntity> days, Context context) {
         this.days = days;
@@ -94,24 +115,24 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
                                 setStopDay(dayTimeEntity, position);
                             } else {
                                 //天数小与初始  从新选择开始  ，结束日期重置，开始日期为当前的位置的天数的信息
-                                setStartDay(dayTimeEntity, position);
                                 resetStopDay();
+                                setStartDay(dayTimeEntity, position);
                             }
                         } else {
                             //选中的月份 比开始日期的月份还小，说明 结束位置不合法，结束日期重置，开始日期为当前的位置的天数的信息
-                            setStartDay(dayTimeEntity, position);
                             resetStopDay();
+                            setStartDay(dayTimeEntity, position);
                         }
 
                     } else {
                         //选中的年份 比开始日期的年份还小，说明 结束位置不合法，结束日期重置，开始日期为当前的位置的天数的信息
-                        setStartDay(dayTimeEntity, position);
                         resetStopDay();
+                        setStartDay(dayTimeEntity, position);
                     }
                 } else if (MonthTimeActivity.startDay.getYear() > 0 && MonthTimeActivity.startDay.getYear() > 1) {
                     //已经点击开始和结束   第三次点击 ，重新点击开始
-                    setStartDay(dayTimeEntity, position);
                     resetStopDay();
+                    setStartDay(dayTimeEntity, position);
                 }
                 EventBus.getDefault().post(new UpdataCalendar()); // 发消息刷新适配器，目的为了显示日历上各个日期的背景颜色
             }
@@ -122,18 +143,18 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
                 && MonthTimeActivity.stopDay.getYear() == dayTimeEntity.getYear() && MonthTimeActivity.stopDay.getMonth() == dayTimeEntity.getMonth() && MonthTimeActivity.stopDay.getDay() == dayTimeEntity.getDay()) {
             //开始和结束同一天
             holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_startstop);
-            holder.select_txt_day_state.setText("一天");
+            setTextState(holder, "一天");
         } else if (MonthTimeActivity.startDay.getYear() == dayTimeEntity.getYear() && MonthTimeActivity.startDay.getMonth() == dayTimeEntity.getMonth() && MonthTimeActivity.startDay.getDay() == dayTimeEntity.getDay()) {
             //该item是 开始日期
             holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_start);
-            holder.select_txt_day_state.setText("起租");
+            setTextState(holder, "起租");
         } else if (MonthTimeActivity.stopDay.getYear() == dayTimeEntity.getYear() && MonthTimeActivity.stopDay.getMonth() == dayTimeEntity.getMonth() && MonthTimeActivity.stopDay.getDay() == dayTimeEntity.getDay()) {
             //该item是 结束日期
             holder.select_ly_day.setBackgroundResource(R.drawable.bg_time_stop);
-            holder.select_txt_day_state.setText("归还");
+            setTextState(holder, "归还");
         } else if (dayTimeEntity.getMonthPosition() >= MonthTimeActivity.startDay.getMonthPosition() && dayTimeEntity.getMonthPosition() <= MonthTimeActivity.stopDay.getMonthPosition()) {
             //处于开始和结束之间的点
-            holder.select_txt_day_state.setText(null);
+            setTextState(holder, null);
             if (dayTimeEntity.getMonthPosition() == MonthTimeActivity.startDay.getMonthPosition() && dayTimeEntity.getMonthPosition() == MonthTimeActivity.stopDay.getMonthPosition()) {
                 //开始和结束是一个月份
                 if (dayTimeEntity.getDay() > MonthTimeActivity.startDay.getDay() && dayTimeEntity.getDay() < MonthTimeActivity.stopDay.getDay()) {
@@ -158,12 +179,12 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
             }
         } else {
             holder.select_ly_day.setBackgroundResource(R.color.white);
-            holder.select_txt_day_state.setText(null);
+            setTextState(holder, null);
         }
 
         //今日
         if (calendarCurre.equals(calendarToday)) {
-            holder.select_txt_day_state.setText("今天");
+            setTextState(holder, "今天");
         }
 
     }
@@ -176,7 +197,7 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
     private void calculateStopDay(int position) {
         calendarStart.set(MonthTimeActivity.startDay.getYear(), MonthTimeActivity.startDay.getMonth() - 1, MonthTimeActivity.startDay.getDay());
         calendarEnd.set(MonthTimeActivity.startDay.getYear(), MonthTimeActivity.startDay.getMonth() - 1, MonthTimeActivity.startDay.getDay());
-        calendarEnd.add(Calendar.DAY_OF_MONTH, packageDay - 1);
+        calendarEnd.add(Calendar.DAY_OF_MONTH, tenancyTerm);
         for (DayTimeEntity day : MonthTimeAdapter.allDays) {
             if (day.getYear() == (int) calendarEnd.get(Calendar.YEAR) && day.getMonth() == (calendarEnd.get(Calendar.MONTH) + 1) && day.getDay() == (int) calendarEnd.get(Calendar.DAY_OF_MONTH)) {
                 setStopDay(day, position);
@@ -193,16 +214,16 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
     private void calculateStopDayUpdate(int position) {
         calendarStart.set(MonthTimeActivity.startDay.getYear(), MonthTimeActivity.startDay.getMonth() - 1, MonthTimeActivity.startDay.getDay());
         calendarEnd.set(MonthTimeActivity.startDay.getYear(), MonthTimeActivity.startDay.getMonth() - 1, MonthTimeActivity.startDay.getDay());
-        calendarEnd.add(Calendar.DAY_OF_MONTH, packageDay - 1);
+        calendarEnd.add(Calendar.DAY_OF_MONTH, tenancyTerm);
         if (calendarStart.get(Calendar.MONTH) == calendarEnd.get(Calendar.MONTH)) {
             //起租时间和归还时间在同一个月
             // 归还时间=起租时间+租期-1。
-            int endPosition = MonthTimeActivity.startDay.getDayPosition() + packageDay - 1;
+            int endPosition = MonthTimeActivity.startDay.getDayPosition() + tenancyTerm;
             setStopDay(days.get(endPosition), endPosition);
         } else {
             //起租时间和归还时间不在同一个月
             // 归还时间在（起租时间+租期-1）之后，从这之后开始遍历。
-            for (int i = MonthTimeActivity.startDay.getDayPosition() + packageDay - 1; i < MonthTimeAdapter.allDays.size(); i++) {
+            for (int i = MonthTimeActivity.startDay.getDayPosition() + tenancyTerm; i < MonthTimeAdapter.allDays.size(); i++) {
                 if (MonthTimeAdapter.allDays.get(i).getYear() == (int) calendarEnd.get(Calendar.YEAR) && MonthTimeAdapter.allDays.get(i).getMonth() == (calendarEnd.get(Calendar.MONTH) + 1) && MonthTimeAdapter.allDays.get(i).getDay() == (int) calendarEnd.get(Calendar.DAY_OF_MONTH)) {
                     setStopDay(MonthTimeAdapter.allDays.get(i), position);
                     break;
@@ -211,6 +232,21 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         }
     }
 
+    /*
+        设置日历下文字内容
+     */
+    private void setTextState(DayTimeViewHolder holder, String text) {
+        if (text == null) {
+            holder.select_txt_day_state.setVisibility(View.GONE);
+        } else {
+            holder.select_txt_day_state.setVisibility(View.VISIBLE);
+        }
+        holder.select_txt_day_state.setText(text);
+    }
+
+    /*
+        设置归还时间
+     */
     private void setStopDay(DayTimeEntity dayTimeEntity, int position) {
         MonthTimeActivity.stopDay.setDay(dayTimeEntity.getDay());
         MonthTimeActivity.stopDay.setMonth(dayTimeEntity.getMonth());
@@ -219,6 +255,9 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         MonthTimeActivity.stopDay.setDayPosition(position);
     }
 
+    /*
+        重置归还时间
+     */
     private void resetStopDay() {
         MonthTimeActivity.stopDay.setDay(-1);
         MonthTimeActivity.stopDay.setMonth(-1);
@@ -227,17 +266,20 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         MonthTimeActivity.stopDay.setDayPosition(-1);
     }
 
+    /*
+        设置起租时间
+     */
     private void setStartDay(DayTimeEntity dayTimeEntity, int position) {
         MonthTimeActivity.startDay.setDay(dayTimeEntity.getDay());           // 该item 天数的 年月日等信息  赋给  开始日期
         MonthTimeActivity.startDay.setMonth(dayTimeEntity.getMonth());
         MonthTimeActivity.startDay.setYear(dayTimeEntity.getYear());
         MonthTimeActivity.startDay.setMonthPosition(dayTimeEntity.getMonthPosition());
         MonthTimeActivity.startDay.setDayPosition(position);
-    }
 
-
-    private void log(String tag, Calendar calendar) {
-        Log.d(tag, calendar.get(Calendar.YEAR) + "-" + (calendar.get(Calendar.MONTH) + 1) + "-" + calendar.get(Calendar.DAY_OF_MONTH));
+        //如果固定租期>0，就计算归还时间
+        if (tenancyTerm > 0) {
+            calculateStopDayUpdate(position);
+        }
     }
 
 
