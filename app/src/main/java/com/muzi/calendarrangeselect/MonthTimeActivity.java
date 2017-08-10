@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,9 @@ public class MonthTimeActivity extends Activity {
     private MonthTimeAdapter adapter;
     private ArrayList<MonthTimeEntity> datas;
 
+    private Button btn1, btn2;
+    private EditText edit1, edit2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +45,32 @@ public class MonthTimeActivity extends Activity {
         initData();
 
         EventBus.getDefault().register(this);
+
+        btn1= (Button) findViewById(R.id.btn1);
+        btn2= (Button) findViewById(R.id.btn2);
+        edit1= (EditText) findViewById(R.id.edit1);
+        edit2= (EditText) findViewById(R.id.edit2);
+
+
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdataCalendar.setInTransitDay(Integer.parseInt(edit1.getText().toString()));
+                startDay = new DayTimeEntity(0, 0, 0, 0);
+                stopDay = new DayTimeEntity(-1, -1, -1, -1);
+                reycycler.setAdapter(adapter);
+            }
+        });
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdataCalendar.setTenancyTerm(Integer.parseInt(edit2.getText().toString()));
+                startDay = new DayTimeEntity(0, 0, 0, 0);
+                stopDay = new DayTimeEntity(-1, -1, -1, -1);
+                reycycler.setAdapter(adapter);
+            }
+        });
 
     }
 

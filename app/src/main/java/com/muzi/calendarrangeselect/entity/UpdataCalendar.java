@@ -26,7 +26,7 @@ public class UpdataCalendar {
 
     /*
     设置固定租期
- */
+     */
     public static void setTenancyTerm(int day) {
         if (day < 1) {
             try {

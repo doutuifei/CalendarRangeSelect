@@ -5,22 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <!--标题栏-->
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="6dp">
+        android:orientation="horizontal">
 
-
-        <!--标题-->
-        <TextView
+        <Button
+            android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="预定日期"
-            android:textSize="20sp" />
-    </RelativeLayout>
+            android:text="设置在途时间" />
+
+        <EditText
+            android:id="@+id/edit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="在途时间为今日之后，在途时间不可选择"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置时间段" />
+
+        <EditText
+            android:id="@+id/edit2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </LinearLayout>
+
 
     <ImageView
         android:layout_width="match_parent"
