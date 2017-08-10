@@ -9,8 +9,8 @@ import java.util.Calendar;
 public class UpdataCalendar {
     public static DayTimeEntity startDay;
     public static DayTimeEntity stopDay;
-    public static int inTransitDay = 2;//在途天数
-    public static int tenancyTerm = 6;//固定租期
+    public static int inTransitDay = 0;//在途天数
+    public static int tenancyTerm = 0;//固定租期
 
     /*
         计算两个日期差
@@ -18,8 +18,8 @@ public class UpdataCalendar {
     public static int estimatedDate() {
         Calendar startCalendar = Calendar.getInstance();
         Calendar stopCalendar = Calendar.getInstance();
-        startCalendar.set(startDay.getYear(), startDay.getMonth()-1, startDay.getDay());
-        stopCalendar.set(stopDay.getYear(), stopDay.getMonth()-1, stopDay.getDay());
+        startCalendar.set(startDay.getYear(), startDay.getMonth() - 1, startDay.getDay());
+        stopCalendar.set(stopDay.getYear(), stopDay.getMonth() - 1, stopDay.getDay());
         return (int) ((stopCalendar.getTime().getTime() - startCalendar.getTime().getTime()) / (1000 * 60 * 60 * 24) + 1);
     }
 

@@ -75,8 +75,11 @@ public class MonthTimeActivity extends Activity {
     }
 
     private void initData() {
-        startDay = new DayTimeEntity(0, 0, 0, 0);
-        stopDay = new DayTimeEntity(-1, -1, -1, -1);
+        startDay = new DayTimeEntity(12, 8, 2017, 0);
+        stopDay = new DayTimeEntity(14, 8, 2017, 0);
+
+//        startDay = new DayTimeEntity(0, 0, 0, 0);
+//        stopDay = new DayTimeEntity(-1, -1, -1, -1);
         datas = new ArrayList<>();
 
         Calendar c = Calendar.getInstance();
