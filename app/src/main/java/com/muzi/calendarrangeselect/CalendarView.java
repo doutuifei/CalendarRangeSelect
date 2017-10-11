@@ -123,6 +123,7 @@ public class CalendarView extends RecyclerView {
         //翻页效果
         nsLinearLayoutManager = new NsLinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         hDividerItemDecoration = new DividerItemDecoration(context, LinearLayoutManager.HORIZONTAL);
+        hDividerItemDecoration.setDrawable(new EmptyDrawable());
         setLayoutManager(nsLinearLayoutManager);
         addItemDecoration(hDividerItemDecoration);
 
