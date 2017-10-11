@@ -49,6 +49,7 @@ public class Main2Activity extends AppCompatActivity {
     private void initCalendar() {
         calendarView = (CalendarView) findViewById(R.id.calendarView);
 
+
         calendarView.setMonthNum(12);
 
         calendarView.setOnCalendarSelect(new CalendarView.onCalendarSelect() {
