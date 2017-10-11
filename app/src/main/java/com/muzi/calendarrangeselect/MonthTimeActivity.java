@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import de.greenrobot.event.EventBus;
+import de.greenrobot.event.Subscribe;
+import de.greenrobot.event.ThreadMode;
 
 import static com.muzi.calendarrangeselect.entity.UpdataCalendar.startDay;
 import static com.muzi.calendarrangeselect.entity.UpdataCalendar.stopDay;
@@ -75,11 +77,10 @@ public class MonthTimeActivity extends Activity {
     }
 
     private void initData() {
-        startDay = new DayTimeEntity(12, 8, 2017, 0);
-        stopDay = new DayTimeEntity(14, 8, 2017, 0);
 
-//        startDay = new DayTimeEntity(0, 0, 0, 0);
-//        stopDay = new DayTimeEntity(-1, -1, -1, -1);
+
+        startDay = new DayTimeEntity(0, 0, 0, 0);
+        stopDay = new DayTimeEntity(-1, -1, -1, -1);
         datas = new ArrayList<>();
 
         Calendar c = Calendar.getInstance();
@@ -110,6 +111,7 @@ public class MonthTimeActivity extends Activity {
         reycycler.setLayoutManager(layoutManager);
     }
 
+    @Subscribe(threadMode = ThreadMode.MainThread)
     public void onEventMainThread(UpdataCalendar event) {
         adapter.notifyDataSetChanged();
         startTime.setText(UpdataCalendar.startDay.getMonth() + "月" + UpdataCalendar.startDay.getDay() + "日" + "\n");
@@ -119,7 +121,6 @@ public class MonthTimeActivity extends Activity {
             stopTime.setText(UpdataCalendar.stopDay.getMonth() + "月" + UpdataCalendar.stopDay.getDay() + "日" + "\n");
             Toast.makeText(this, UpdataCalendar.estimatedDate() + "天", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     @Override
