@@ -4,15 +4,12 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.TextView;
 
 
 /**
  *  Created by 木子 on 2017/08/08.
  */
 public class MonthTimeViewHolder extends RecyclerView.ViewHolder{
-
-    public TextView plan_time_txt_month;                         //文本 2018-1
     public RecyclerView plan_time_recycler_content ;            //月份里面详细日期的列表
     public Context context;                                        //上下文
 
@@ -20,7 +17,6 @@ public class MonthTimeViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         this.context = context;
         plan_time_recycler_content = (RecyclerView) itemView.findViewById(R.id.plan_time_recycler_content);
-        plan_time_txt_month = (TextView) itemView.findViewById(R.id.plan_time_txt_month);
 
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(context,

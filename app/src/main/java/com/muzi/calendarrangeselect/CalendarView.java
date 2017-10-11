@@ -6,8 +6,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.muzi.calendarrangeselect.entity.DayTimeEntity;
 import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
@@ -39,13 +37,16 @@ public class CalendarView extends RecyclerView {
     private PagingScrollHelper scrollHelper;
 
     //日历数据集合
-    private ArrayList<MonthTimeEntity> dateList=new ArrayList<>();
+    private ArrayList<MonthTimeEntity> dateList = new ArrayList<>();
 
     //默认显示6个月数据
     private int monthNum = 6;
 
     //不可选择天数
     private int unableSelectDay = 0;
+
+    private onCalendarSelect onCalendarSelect;
+
 
     public CalendarView(Context context) {
         super(context);
@@ -92,13 +93,24 @@ public class CalendarView extends RecyclerView {
             calendar = Calendar.getInstance();
             calendar.add(Calendar.MONTH, i);
             int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH)+1;
+            int month = calendar.get(Calendar.MONTH) + 1;
             dateList.add(new MonthTimeEntity(year, month));
+        }
+
+        if (onCalendarSelect != null) {
+            onCalendarSelect.OnMonthSwhit(dateList.get(0));
         }
     }
 
+    public void setOnCalendarSelect(CalendarView.onCalendarSelect onCalendarSelect) {
+        this.onCalendarSelect = onCalendarSelect;
+        init();
+    }
 
-    public void init() {
+    /**
+     * 初始化界面
+     */
+    private void init() {
         EventBus.getDefault().register(this);
         getData();
         initCalenderSwipe();
@@ -130,22 +142,24 @@ public class CalendarView extends RecyclerView {
         scrollHelper = new PagingScrollHelper();
         scrollHelper.setUpRecycleView(this);
         scrollHelper.setOnPageChangeListener(index -> {
-            Log.d("CalendarView", dateList.get(index).getYear() + "-" + dateList.get(index).getMonth());
-            Toast.makeText(context, dateList.get(index).getYear() + "-" + dateList.get(index).getMonth(), Toast.LENGTH_SHORT).show();
+            if (onCalendarSelect != null) {
+                onCalendarSelect.OnMonthSwhit(dateList.get(index));
+            }
         });
     }
 
     @Subscribe(threadMode = ThreadMode.MainThread)
     public void onEventMainThread(UpdataCalendar event) {
         monthAdapter.notifyDataSetChanged();
-        Log.d("CalendarView", UpdataCalendar.startDay.getMonth() + "月" + UpdataCalendar.startDay.getDay() + "日");
-
-        if (UpdataCalendar.stopDay.getDay() == -1) {
-            Log.d("CalendarView", "结束" + "\n" + "时间");
-        } else {
-            Log.d("CalendarView", UpdataCalendar.stopDay.getMonth() + "月" + UpdataCalendar.stopDay.getDay() + "日");
-
-            Toast.makeText(context, UpdataCalendar.estimatedDate() + "天", Toast.LENGTH_SHORT).show();
+        if (onCalendarSelect != null && UpdataCalendar.stopDay.getDay() != -1) {
+            onCalendarSelect.OnDaySelect(UpdataCalendar.startDay, UpdataCalendar.stopDay, UpdataCalendar.estimatedDate());
         }
+
+    }
+
+    public interface onCalendarSelect {
+        void OnMonthSwhit(MonthTimeEntity entity);
+
+        void OnDaySelect(DayTimeEntity startDay, DayTimeEntity endDay, int day);
     }
 }

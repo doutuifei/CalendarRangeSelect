@@ -77,8 +77,6 @@ public class MonthTimeActivity extends Activity {
     }
 
     private void initData() {
-
-
         startDay = new DayTimeEntity(0, 0, 0, 0);
         stopDay = new DayTimeEntity(-1, -1, -1, -1);
         datas = new ArrayList<>();

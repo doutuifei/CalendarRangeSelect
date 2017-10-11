@@ -1,7 +1,7 @@
 package com.muzi.calendarrangeselect.entity;
 
 /**
- *  Created by 木子 on 2017/08/08.
+ * Created by 木子 on 2017/08/08.
  * 代表日历上的每一个月份
  */
 public class MonthTimeEntity {
@@ -28,6 +28,11 @@ public class MonthTimeEntity {
 
     public void setMonth(int month) {
         this.month = month;
+    }
+
+    @Override
+    public String toString() {
+        return year + "-" + month;
     }
 }
 

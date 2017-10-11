@@ -41,7 +41,6 @@ public class MonthTimeAdapter extends RecyclerView.Adapter<MonthTimeViewHolder> 
     @Override
     public void onBindViewHolder(MonthTimeViewHolder holder, int position) {
         MonthTimeEntity monthTimeEntity = datas.get(position);
-        holder.plan_time_txt_month.setText(monthTimeEntity.getYear() + "--" + monthTimeEntity.getMonth());  //显示 几年--几月
         //得到该月份的第一天
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, monthTimeEntity.getYear());          //指定年份
