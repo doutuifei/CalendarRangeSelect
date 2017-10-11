@@ -39,8 +39,8 @@
             android:id="@+id/edit2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="设置固定租期"/>
+            android:hint="设置固定租期"
+            android:inputType="number" />
     </LinearLayout>
 
 
@@ -49,21 +49,21 @@
         android:layout_height="1dp"
         android:background="#d9d9d9" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#f2f4f7"
-        android:paddingTop="20dp">
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <TextView
             android:id="@+id/plan_time_txt_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="74dp"
-            android:layout_marginRight="74dp"
             android:background="@mipmap/bg_white_circle"
             android:gravity="center"
             android:text="开始\n时间" />
@@ -75,19 +75,18 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:layout_marginEnd="74dp"
-            android:layout_marginRight="74dp"
+            android:layout_marginLeft="70dp"
             android:background="@mipmap/bg_white_circle"
             android:gravity="center"
             android:text="结束\n时间" />
-    </RelativeLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/month"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
         android:textColor="@color/calendar_back_between"
         android:textSize="16sp" />
