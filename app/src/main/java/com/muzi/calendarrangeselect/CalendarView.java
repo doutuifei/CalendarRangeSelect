@@ -90,9 +90,9 @@ public class CalendarView extends RecyclerView {
         Calendar calendar;
         for (int i = 0; i < monthNum; i++) {
             calendar = Calendar.getInstance();
-            calendar.add(Calendar.MONTH, i+1);
+            calendar.add(Calendar.MONTH, i);
             int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
+            int month = calendar.get(Calendar.MONTH)+1;
             dateList.add(new MonthTimeEntity(year, month));
         }
     }
