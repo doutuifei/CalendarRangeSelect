@@ -50,12 +50,12 @@ calendarView.setOnCalendarSelect(new CalendarView.onCalendarSelect() {
 
 * 设置不可点击的天数， 从今天以后开始计算，在途状态不可点击
 ```
- calendarView.setUnableSelectDay(2)
+ calendarView.setUnableSelectDay(2);
 ```
 
 * 设置连续选择
 ```
- calendarView.setMultipleChoice(6)
+ calendarView.setMultipleChoice(6);
 ```
 
 
