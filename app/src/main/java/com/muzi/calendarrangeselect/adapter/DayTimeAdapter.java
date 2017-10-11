@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.selectTime;
+package com.muzi.calendarrangeselect.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.muzi.calendarrangeselect.MonthTimeAdapter;
 import com.muzi.calendarrangeselect.R;
 import com.muzi.calendarrangeselect.entity.DayTimeEntity;
 import com.muzi.calendarrangeselect.entity.UpdataCalendar;
+import com.muzi.calendarrangeselect.holder.DayTimeViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -50,7 +50,7 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
         DayTimeViewHolder ret = null;
         // 不需要检查是否复用，因为只要进入此方法，必然没有复用
         // 因为RecyclerView 通过Holder检查复用
-        View v = LayoutInflater.from(context).inflate(R.layout.item_recycler_selectday, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_day, parent, false);
         ret = new DayTimeViewHolder(v);
 
         return ret;

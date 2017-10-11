@@ -5,6 +5,83 @@
     android:orientation="vertical">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置在途时间" />
+
+        <EditText
+            android:id="@+id/edit1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="在途时间为今日之后，在途时间不可选择"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="设置时间段" />
+
+        <EditText
+            android:id="@+id/edit2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="设置固定租期"/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#d9d9d9" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f2f4f7"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/plan_time_txt_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="74dp"
+            android:layout_marginRight="74dp"
+            android:background="@mipmap/bg_white_circle"
+            android:gravity="center"
+            android:text="开始\n时间" />
+
+        <TextView
+            android:id="@+id/plan_time_txt_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="74dp"
+            android:layout_marginRight="74dp"
+            android:background="@mipmap/bg_white_circle"
+            android:gravity="center"
+            android:text="结束\n时间" />
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/month"
         android:layout_width="wrap_content"
@@ -15,7 +92,7 @@
         android:textColor="@color/calendar_back_between"
         android:textSize="16sp" />
 
-    <com.muzi.calendarrangeselect.CalendarView
+    <com.muzi.calendarrangeselect.widget.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

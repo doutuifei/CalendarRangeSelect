@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect;
+package com.muzi.calendarrangeselect.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
+import com.muzi.calendarrangeselect.adapter.MonthTimeAdapter;
 import com.muzi.calendarrangeselect.entity.DayTimeEntity;
 import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
 import com.muzi.calendarrangeselect.entity.UpdataCalendar;
@@ -42,8 +43,6 @@ public class CalendarView extends RecyclerView {
     //默认显示6个月数据
     private int monthNum = 6;
 
-    //不可选择天数
-    private int unableSelectDay = 0;
 
     private onCalendarSelect onCalendarSelect;
 
@@ -59,11 +58,8 @@ public class CalendarView extends RecyclerView {
     }
 
 
-    public int getMonthNum() {
-        return monthNum;
-    }
-
     /**
+     * 显示的日历月份数，默认显示6个月
      * 在init();之前调用
      *
      * @param monthNum
@@ -72,15 +68,30 @@ public class CalendarView extends RecyclerView {
         this.monthNum = monthNum;
     }
 
-    public int getUnableSelectDay() {
-        return unableSelectDay;
-    }
 
+    /**
+     * 设置在途天数
+     * 从今天以后开始计算
+     * 在途状态不可点击
+     *
+     * @param unableSelectDay
+     */
     public void setUnableSelectDay(int unableSelectDay) {
-        this.unableSelectDay = unableSelectDay;
         UpdataCalendar.inTransitDay = unableSelectDay;
         if (monthAdapter != null) {
-            initState();
+            resetState();
+        }
+    }
+
+    /**
+     * 设置连续选择
+     *
+     * @param day
+     */
+    public void setMultipleChoice(int day) {
+        UpdataCalendar.setTenancyTerm(day);
+        if (monthAdapter != null) {
+            resetState();
         }
     }
 
@@ -115,13 +126,13 @@ public class CalendarView extends RecyclerView {
         getData();
         initCalenderSwipe();
         monthAdapter = new MonthTimeAdapter(dateList, context);
-        initState();
+        resetState();
     }
 
     /**
      * 还原状态
      */
-    private void initState() {
+    private void resetState() {
         UpdataCalendar.startDay = new DayTimeEntity(0, 0, 0, 0);
         UpdataCalendar.stopDay = new DayTimeEntity(-1, -1, -1, -1);
         setAdapter(monthAdapter);
@@ -161,5 +172,9 @@ public class CalendarView extends RecyclerView {
         void OnMonthSwhit(MonthTimeEntity entity);
 
         void OnDaySelect(DayTimeEntity startDay, DayTimeEntity endDay, int day);
+    }
+
+    public void onDestory(){
+        EventBus.getDefault().unregister(this);
     }
 }

@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect;
+package com.muzi.calendarrangeselect.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,9 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.muzi.calendarrangeselect.holder.MonthTimeViewHolder;
+import com.muzi.calendarrangeselect.R;
 import com.muzi.calendarrangeselect.entity.DayTimeEntity;
 import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
-import com.muzi.calendarrangeselect.selectTime.DayTimeAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -33,7 +34,7 @@ public class MonthTimeAdapter extends RecyclerView.Adapter<MonthTimeViewHolder> 
         MonthTimeViewHolder ret = null;
         // 不需要检查是否复用，因为只要进入此方法，必然没有复用
         // 因为RecyclerView 通过Holder检查复用
-        View v = LayoutInflater.from(context).inflate(R.layout.item_recycler_timeplan, parent, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.item_rmonth, parent, false);
         ret = new MonthTimeViewHolder(v, context);
         return ret;
     }

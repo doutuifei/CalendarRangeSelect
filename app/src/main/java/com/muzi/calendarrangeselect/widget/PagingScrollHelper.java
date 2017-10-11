@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect;
+package com.muzi.calendarrangeselect.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

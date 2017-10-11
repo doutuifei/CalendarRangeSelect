@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect;
+package com.muzi.calendarrangeselect.widget;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

@@ -12,8 +12,8 @@ public class UpdataCalendar {
     public static int inTransitDay = 0;//在途天数
     public static int tenancyTerm = 0;//固定租期
 
-    /*
-        计算两个日期差
+    /**
+     * 计算两个日期差
      */
     public static int estimatedDate() {
         Calendar startCalendar = Calendar.getInstance();
@@ -24,8 +24,8 @@ public class UpdataCalendar {
     }
 
 
-    /*
-    设置固定租期
+    /**
+     * 设置固定租期
      */
     public static void setTenancyTerm(int day) {
         if (day < 1) {
@@ -38,10 +38,4 @@ public class UpdataCalendar {
         tenancyTerm = day - 1;
     }
 
-    /*
-        设置在途时间
-     */
-    public static void setInTransitDay(int day) {
-        inTransitDay = day;
-    }
 }
