@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.widget;
+package com.neisha.library.widget;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -117,18 +117,22 @@ public class PagingScrollHelper {
                 mAnimator = new ValueAnimator().ofInt(startPoint, endPoint);
 
                 mAnimator.setDuration(300);
-                mAnimator.addUpdateListener(animation -> {
-                    int nowPoint = (int) animation.getAnimatedValue();
+                mAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        int nowPoint = (int) animation.getAnimatedValue();
 
-                    if (mOrientation == ORIENTATION.VERTICAL) {
-                        int dy = nowPoint - offsetY;
-                        //这里通过RecyclerView的scrollBy方法实现滚动。
-                        mRecyclerView.scrollBy(0, dy);
-                    } else {
-                        int dx = nowPoint - offsetX;
-                        mRecyclerView.scrollBy(dx, 0);
+                        if (mOrientation == ORIENTATION.VERTICAL) {
+                            int dy = nowPoint - offsetY;
+                            //这里通过RecyclerView的scrollBy方法实现滚动。
+                            mRecyclerView.scrollBy(0, dy);
+                        } else {
+                            int dx = nowPoint - offsetX;
+                            mRecyclerView.scrollBy(dx, 0);
+                        }
                     }
                 });
+
                 mAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {

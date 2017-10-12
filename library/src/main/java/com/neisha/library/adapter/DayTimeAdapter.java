@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.adapter;
+package com.neisha.library.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,18 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.muzi.calendarrangeselect.R;
-import com.muzi.calendarrangeselect.entity.DayTimeEntity;
-import com.muzi.calendarrangeselect.entity.UpdataCalendar;
-import com.muzi.calendarrangeselect.holder.DayTimeViewHolder;
+import com.neisha.library.R;
+import com.neisha.library.entity.DayTimeEntity;
+import com.neisha.library.entity.UpdataCalendar;
+import com.neisha.library.holder.DayTimeViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 import de.greenrobot.event.EventBus;
 
-import static com.muzi.calendarrangeselect.entity.UpdataCalendar.inTransitDay;
-import static com.muzi.calendarrangeselect.entity.UpdataCalendar.tenancyTerm;
+
+import static com.neisha.library.entity.UpdataCalendar.inTransitDay;
+import static com.neisha.library.entity.UpdataCalendar.tenancyTerm;
 
 /**
  * Created by 木子 on 2017/08/08.

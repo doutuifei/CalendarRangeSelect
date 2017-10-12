@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#ffffff</color>
+    <color name="calendar_back_first">#038EDF</color>
+    <color name="calendar_back_between">#74C5F2</color>
+    <color name="calendar_text_select">#ffffff</color>
+    <color name="calendar_text_unselect">#515151</color>
+</resources>

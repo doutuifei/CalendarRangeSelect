@@ -14,7 +14,7 @@ Android日历连续区间选择
         android:layout_height="wrap_content" />
 ```
 
-* Activity
+* 2、Activity
 ```
  calendarView = (CalendarView) findViewById(R.id.calendarView);
         
@@ -39,8 +39,17 @@ calendarView.setOnCalendarSelect(new CalendarView.onCalendarSelect() {
             stopTime.setText(endDay.getMonth() + "月" + endDay.getDay() + "日");
        }
       });
+      
+@Override
+    protected void onDestroy() {
+        super.onDestroy();
+        calendarView.onDestory();
+    }      
 ```
+
 * 这样就完成了，可以开始点击了
+
+
 
 ## CalendarView基本功能介绍
 * 设置日历显示的月份数量默认为6个月 

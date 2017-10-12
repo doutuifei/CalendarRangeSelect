@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.widget;
+package com.neisha.library.widget;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -7,10 +7,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 
-import com.muzi.calendarrangeselect.adapter.MonthTimeAdapter;
-import com.muzi.calendarrangeselect.entity.DayTimeEntity;
-import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
-import com.muzi.calendarrangeselect.entity.UpdataCalendar;
+import com.neisha.library.adapter.MonthTimeAdapter;
+import com.neisha.library.entity.DayTimeEntity;
+import com.neisha.library.entity.MonthTimeEntity;
+import com.neisha.library.entity.UpdataCalendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -152,9 +152,13 @@ public class CalendarView extends RecyclerView {
 
         scrollHelper = new PagingScrollHelper();
         scrollHelper.setUpRecycleView(this);
-        scrollHelper.setOnPageChangeListener(index -> {
-            if (onCalendarSelect != null) {
-                onCalendarSelect.OnMonthSwhit(dateList.get(index));
+
+        scrollHelper.setOnPageChangeListener(new PagingScrollHelper.onPageChangeListener() {
+            @Override
+            public void onPageChange(int index) {
+                if (onCalendarSelect != null) {
+                    onCalendarSelect.OnMonthSwhit(dateList.get(index));
+                }
             }
         });
     }

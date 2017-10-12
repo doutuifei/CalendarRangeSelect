@@ -7,9 +7,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.muzi.calendarrangeselect.entity.DayTimeEntity;
-import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
-import com.muzi.calendarrangeselect.widget.CalendarView;
+import com.neisha.library.entity.DayTimeEntity;
+import com.neisha.library.entity.MonthTimeEntity;
+import com.neisha.library.widget.CalendarView;
+
 
 public class Main2Activity extends AppCompatActivity {
 

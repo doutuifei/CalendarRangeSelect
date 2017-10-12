@@ -1,11 +1,11 @@
-package com.muzi.calendarrangeselect.holder;
+package com.neisha.library.holder;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.muzi.calendarrangeselect.R;
+import com.neisha.library.R;
 
 
 /**

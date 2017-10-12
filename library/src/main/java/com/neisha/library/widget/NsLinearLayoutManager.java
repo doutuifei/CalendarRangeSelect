@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.widget;
+package com.neisha.library.widget;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;

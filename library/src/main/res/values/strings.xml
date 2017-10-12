@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">library</string>
+    <string name="text_calendar_start">起租</string>
+    <string name="text_calendar_stop">归还</string>
+    <string name="text_calendar_one">一天</string>
+    <string name="text_calendar_today">今天</string>
+</resources>

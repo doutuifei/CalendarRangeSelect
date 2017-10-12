@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.entity;
+package com.neisha.library.entity;
 
 import java.util.Calendar;
 

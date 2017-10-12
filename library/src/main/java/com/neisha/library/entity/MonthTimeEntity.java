@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.entity;
+package com.neisha.library.entity;
 
 /**
  * Created by 木子 on 2017/08/08.

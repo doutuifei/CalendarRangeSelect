@@ -88,10 +88,9 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:textColor="@color/calendar_back_between"
         android:textSize="16sp" />
 
-    <com.muzi.calendarrangeselect.widget.CalendarView
+    <com.neisha.library.widget.CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

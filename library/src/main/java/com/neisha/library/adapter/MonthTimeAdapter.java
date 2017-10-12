@@ -1,4 +1,4 @@
-package com.muzi.calendarrangeselect.adapter;
+package com.neisha.library.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,10 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.muzi.calendarrangeselect.holder.MonthTimeViewHolder;
-import com.muzi.calendarrangeselect.R;
-import com.muzi.calendarrangeselect.entity.DayTimeEntity;
-import com.muzi.calendarrangeselect.entity.MonthTimeEntity;
+import com.neisha.library.R;
+import com.neisha.library.entity.DayTimeEntity;
+import com.neisha.library.entity.MonthTimeEntity;
+import com.neisha.library.holder.MonthTimeViewHolder;
 
 import java.util.ArrayList;
 import java.util.Calendar;
