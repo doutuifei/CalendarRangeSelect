@@ -1,10 +1,28 @@
 # CalendarRangeSelect
 Android日历连续区间选择
 
-# 效果预览
+## 效果预览
 ![image](https://github.com/TurnTears/CalendarRangeSelect/blob/c6d8f5a5202e53a47ce21d097c85750b69b06100/image/preview.gif)
 
-# 基本使用
+## Gradle配置
+
+* Step 1. build.gradle(Project:***)添加
+```allprojects {
+		repositories {
+			...
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+
+* Step 2. build.gradle(Module:app)
+```
+dependencies {
+	        compile 'com.github.TurnTears:CalendarRangeSelect:1.0'
+	}
+```
+
+## 基本使用
 
 * 1、布局文件
 ```
@@ -68,5 +86,5 @@ calendarView.setOnCalendarSelect(new CalendarView.onCalendarSelect() {
 ```
 
 
-### 感谢
+## 感谢
 * 一行代码让RecyclerView分页滚动 [HorizontalPage](https://github.com/zhuguohui/HorizontalPage)
