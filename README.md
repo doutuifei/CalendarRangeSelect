@@ -7,12 +7,14 @@ Android日历连续区间选择
 ## Gradle配置
 
 * Step 1. build.gradle(Project:***)添加
-```allprojects {
+```
+allprojects {
 		repositories {
 			...
 			maven { url 'https://jitpack.io' }
 		}
 	}
+	
 ```
 
 * Step 2. build.gradle(Module:app)
@@ -20,6 +22,7 @@ Android日历连续区间选择
 dependencies {
 	        compile 'com.github.TurnTears:CalendarRangeSelect:1.0'
 	}
+	
 ```
 
 ## 基本使用
