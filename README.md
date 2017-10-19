@@ -2,7 +2,7 @@
 Android日历连续区间选择
 
 ## 效果预览
-![image](https://github.com/TurnTears/CalendarRangeSelect/blob/c6d8f5a5202e53a47ce21d097c85750b69b06100/image/preview.gif)
+![image](https://github.com/TurnTears/CalendarRangeSelect/blob/2d9b3e081698d61c201ffafac581583982f3d750/preview/img.gif)
 
 ## Gradle配置
 
