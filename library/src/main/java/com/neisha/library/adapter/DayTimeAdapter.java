@@ -176,6 +176,12 @@ public class DayTimeAdapter extends RecyclerView.Adapter<DayTimeViewHolder> {
             setTextUnSelectColor(holder);
         }
 
+
+        if (calendarCurre.before(calendarLimit) || calendarCurre.equals(calendarLimit)) {
+            holder.select_txt_day.setTextColor(context.getResources().getColor(R.color.calendar_text_unable));
+            holder.select_txt_day_state.setTextColor(context.getResources().getColor(R.color.calendar_text_unable));
+        }
+
         //在途
         if (calendarCurre.after(calendarToday) && calendarCurre.before(calendarLimit) || calendarCurre.equals(calendarLimit)) {
             setTextState(holder, context.getResources().getString(R.string.text_calendar_transit));

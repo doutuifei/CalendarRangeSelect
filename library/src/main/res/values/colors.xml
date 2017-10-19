@@ -5,5 +5,5 @@
     <color name="calendar_back_between">#74C5F2</color>
     <color name="calendar_text_select">#ffffff</color>
     <color name="calendar_text_unselect">#515151</color>
-    <color name="calendar_text_unable">#6c6c6c</color>
+    <color name="calendar_text_unable">#a4a4a4</color>
 </resources>
