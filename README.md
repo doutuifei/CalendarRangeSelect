@@ -20,7 +20,7 @@ allprojects {
 * Step 2. build.gradle(Module:app)
 ```
 	dependencies {
-	        compile 'com.github.TurnTears:CalendarRangeSelect:1.1'
+	        compile 'com.github.TurnTears:CalendarRangeSelect:1.1.1'
 	}
 
 ```
